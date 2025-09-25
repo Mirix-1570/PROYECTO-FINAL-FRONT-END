@@ -14,7 +14,6 @@ const Routing =() => {
             <Route path='/Café' element={<Café />} />
             <Route path='/Comunidad' element={<Comunidad />} />
             <Route path='/Contacto' element={<Contacto />} />
-
         </Routes>
     </Router>
     
