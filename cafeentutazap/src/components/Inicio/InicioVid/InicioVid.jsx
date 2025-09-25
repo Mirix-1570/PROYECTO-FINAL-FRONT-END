@@ -1,15 +1,26 @@
 import React from 'react'
-import '../InicioVid/estilos.css'
+import './estilos.css'
+import heroVid from '../../../videos/153456-805688480_small.mp4'
 
 function InicioVid() {
   return (
-    <div>InicioVid
-      <img src="" alt="" />
-      <h1>Café en tu Taza</h1>
-      <p>Propiedades, Productores y Sabores</p>
-      <button>Ver Más</button>
-      <video src=""></video>
-    </div>
+    <section className="hero">
+      <video
+        className="hero__video"
+        src={heroVid}
+        autoPlay
+        muted
+        loop
+        playsInline
+        aria-hidden="true"
+      />
+
+      <div className="hero__overlay">
+        <h1 className="hero__title">Café en tu Taza</h1>
+        <p className="hero__subtitle">Propiedades, Productores y Sabores</p>
+        <button className="hero__btn">Ver Más</button>
+      </div>
+    </section>
   )
 }
 
