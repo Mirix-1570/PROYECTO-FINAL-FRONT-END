@@ -44,5 +44,27 @@ throw error
 
 }
 }
+async function postProductos(objProducto) {
 
-export default {postUsuarios,getUsuarios}
+try {
+    const response = await fetch('http://localhost:3001/Productos',{
+            method: 'POST',
+            headers :{
+                'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(objProducto)
+    })
+
+const productos = await response.json()
+
+return productos
+
+} catch (error) {
+
+console.error("Hay un error al obtener los productos",error)
+throw error
+
+}
+}
+
+export default {postUsuarios,getUsuarios,postProductos}

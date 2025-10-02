@@ -94,10 +94,10 @@ function NavBar() {
             <Link className="nav-btn" to="/iniciarsesion">
               Login
             </Link>
-            <Link className="nav-btn" to="/registro">
+            <Link className="nav-btn" to="/Registrar">
               SignUp
             </Link>
-            <Link className="nav-btn" to="/comunidad">
+            <Link className="nav-btn" to="/Comunidad">
               Comunidad
             </Link>
           </div>
