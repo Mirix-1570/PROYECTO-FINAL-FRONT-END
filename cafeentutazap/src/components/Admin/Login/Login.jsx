@@ -51,44 +51,54 @@ function Login() {
   };
 
   return (
-    <div>
-      Login
-      <div className="Username">
-        {" "}
-        {/* Cambia class por className */}
-        <label htmlFor="usuario">Usuario</label>
-        <input
-          type="text"
-          id="usuario"
-          name="usuario"
-          value={usuario}
-          onChange={(e) => setUsuario(e.target.value)}
-        />{" "}
-        {/* Añade value y onChange */}
-      </div>
-      <div className="Password">
-        {" "}
-        {/* Cambia class por className */}
-        <label htmlFor="contrasena">Contraseña</label>
-        <input
-          type="password"
-          id="contrasena"
-          name="contrasena"
-          value={contrasena}
-          onChange={(e) => setPassword(e.target.value)}
-        />{" "}
-        {/* Añade value y onChange */}
-      </div>
-      {error && (
-        <div className="error" style={{ color: "red", marginTop: 8 }}>
-          {error}
+    <main className="login-page">
+      <div className="login-container">
+        <img src="/media/logo.png" alt="Logo" className="login-logo" />
+        <div className="login-card">
+          <h2 className="login-title">Iniciar sesión</h2>
+
+          <form className="login-form">
+            <label htmlFor="usuario" className="login-label">
+              Usuario
+            </label>
+            <input
+              id="usuario"
+              name="usuario"
+              type="text"
+              className="login-input"
+              value={usuario}
+              placeholder="correo o usuario"
+              onChange={(e) => setUsuario(e.target.value)}
+            />
+
+            <label htmlFor="contrasena" className="login-label">
+              Contraseña
+            </label>
+            <input
+              id="contrasena"
+              name="contrasena"
+              type="password"
+              className="login-input"
+              value={contrasena}
+              placeholder="********"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+
+            {error && <p className="login-error">{error}</p>}
+
+            <button type="submit" className="login-btn" onClick={Validalogin}> 
+              Iniciar sesión
+            </button>
+          </form>
+
+          <p className="login-help">¿Aún no tienes cuenta? Regístrate</p>
         </div>
-      )}
-      <button type="button" onClick={Validalogin}>
-        Iniciar sesión
-      </button>
-    </div>
+      </div>
+    </main>
   );
 }
 
 export default Login;
+
+
+
