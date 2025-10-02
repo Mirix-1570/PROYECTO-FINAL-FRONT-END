@@ -1,0 +1,132 @@
+.encuentra-section {
+  width: 100%;
+  /* full-bleed: remove horizontal padding so content can reach edges if needed */
+  padding: 0; /* remove bottom padding so next section sits flush */
+  margin-top: 0;
+  box-sizing: border-box;
+}
+
+/* Avoid forcing viewport-width elements which cause horizontal scroll.
+   Use the container's available width instead so sections adapt to layout. */
+.encuentra-content,
+.prop-content {
+  width: 100%;
+  margin-left: 0;
+  box-sizing: border-box;
+}
+
+/* Ensure children include padding in the element box so padding doesn't
+   push visual centers off the true 50% seam. */
+.encuentra-text,
+.encuentra-image,
+.prop-left,
+.prop-right {
+  box-sizing: border-box;
+}
+
+.encuentra-content {
+  /* occupy the full window width */
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  display: flex;
+  gap: 0;
+  align-items: stretch;
+  background: #fff;
+  box-shadow: none;
+  /* make the content taller so it occupies noticeable vertical space */
+  min-height: 520px;
+}
+
+.encuentra-text {
+  flex: 1 1 50%;
+  background: var(--primary-brown);
+  color: var(--primary-brown-contrast);
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* center children horizontally */
+  text-align: center; /* center inline text */
+}
+
+.encuentra-text h2 {
+  margin: 0 0 1rem 0;
+  /* doubled from 2.4rem */
+  font-size: 4.8rem;
+}
+
+.encuentra-sub {
+  margin: 0 0 2rem 0;
+  /* doubled from 1.6rem */
+  font-size: 2.5rem;
+  line-height: 1.15;
+}
+
+.encuentra-btn {
+  background: var(--primary-brown-contrast);
+  color: var(--primary-brown);
+  margin-top: 5rem;
+  border: none;
+  /* slightly larger than default, not doubled */
+  padding: 0.85rem 1.5rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: 999px; /* pill-shaped for a more rounded look */
+  cursor: pointer;
+}
+
+.encuentra-image {
+  flex: 1 1 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.encuentra-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ensure image centers correctly on very wide screens */
+.encuentra-image img {
+  object-position: center;
+}
+
+@media (max-width: 800px) {
+  .encuentra-content {
+    flex-direction: column;
+  }
+
+  .encuentra-text {
+    align-items: center;
+    text-align: center;
+    padding: 2rem 1.5rem;
+  }
+
+  /* keep font sizes reasonable on small screens */
+  .encuentra-text h2 {
+    font-size: 2.8rem; /* smaller than desktop doubled size */
+  }
+
+  .encuentra-sub {
+    font-size: 1.8rem;
+  }
+
+  .encuentra-btn {
+    font-size: 1rem;
+    padding: 0.8rem 1.25rem;
+  }
+
+  .encuentra-image {
+    height: 260px;
+  }
+
+  /* on small screens give more breathing room vertically */
+  .encuentra-content {
+    min-height: 640px;
+  }
+}

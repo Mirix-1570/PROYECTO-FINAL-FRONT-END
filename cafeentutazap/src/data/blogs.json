@@ -1,0 +1,23 @@
+[
+    {
+        "id": "b1",
+        "title": "El arte del tostado: cómo influye en el sabor",
+        "author": "Mariel M.",
+        "date": "2025-10-01",
+        "excerpt": "Breve introducción sobre cómo distintas temperaturas y tiempos de tostado cambian las notas del café."
+    },
+    {
+        "id": "b2",
+        "title": "Productores locales: historias y procesos",
+        "author": "E. López",
+        "date": "2025-09-22",
+        "excerpt": "Conoce a algunos de los productores que trabajan con prácticas sostenibles y su impacto en la calidad."
+    },
+    {
+        "id": "b3",
+        "title": "Métodos de preparación en casa",
+        "author": "Gerardo",
+        "date": "2025-08-15",
+        "excerpt": "Comparativa rápida de prensa francesa, V60 y Aeropress para sacar lo mejor de tu café."
+    }
+]

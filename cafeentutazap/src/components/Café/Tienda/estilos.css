@@ -1,0 +1,351 @@
+/* Tienda styles - hero + horizontal product scroll + card glass effect */
+.tienda-root {
+  min-height: 100vh;
+  font-family: sans-serif;
+  color: #333333;
+  /* Background image for the whole component (uses public/media/tienda.jpeg) */
+  background-image: url("/media/tienda.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* ensure children can overlay on the hero image */
+  padding: 0; /* remove default spacing so hero and products feel like a single unit */
+  /* create stacking context so hero overlay and products can layer cleanly */
+  position: relative;
+  /* avoid using 100vw + negative margins which can cause horizontal scroll; use full width of its container instead */
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.tienda-hero {
+  height: 320px;
+  /* keep transparent so the root background shows through; overlay handles contrast */
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.tienda-hero-overlay {
+  width: 100%;
+  height: 100%;
+  /* a slightly stronger gradient at the bottom so products can overlap and remain readable */
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  z-index: 1;
+}
+
+.tienda-title {
+  color: #ffffff;
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.tienda-subtitle {
+  color: #ffffff;
+  font-size: 1.25rem;
+  margin-top: 0.75rem;
+  font-weight: 500;
+}
+
+.tienda-products-section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  /* keep products visually attached to the hero and previous section */
+  margin-top: 0;
+  padding: 0 1.25rem 2rem 1.25rem;
+  /* center the inner scrolling area and limit width for large screens */
+  justify-content: center;
+  width: 100%;
+  /* make sure products sit above the hero overlay */
+  position: relative;
+  z-index: 2;
+}
+
+.tienda-arrow {
+  /* no visible container: transparent background, larger/thicker glyph */
+  background: transparent;
+  border: none;
+  font-size: 6.4rem; /* keep the large height */
+  /* reduce weight so arrows are visually thinner (about half the previous thickness) */
+  font-weight: 400;
+  cursor: pointer;
+  color: #ffffff; /* white arrows as requested */
+  padding: 6px 10px; /* keep a comfortable clickable area but no visible box */
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0;
+  box-shadow: none;
+  transition: color 120ms ease, transform 120ms ease;
+}
+.tienda-arrow:hover,
+.tienda-arrow:focus {
+  color: rgba(255, 255, 255, 0.92); /* subtle opacity change on hover/focus */
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.tienda-products {
+  display: flex;
+  gap: 1rem;
+  /* avoid horizontal scroll on the page; allow content to wrap instead */
+  overflow-x: visible;
+  padding: 0.5rem;
+  scroll-behavior: smooth;
+  /* constrain width so the arrows sit outside the scrolling area and the content looks centered */
+  max-width: calc(100% - 120px);
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.product-card {
+  /* make cards have a consistent base width while remaining responsive:
+     - use a flex-basis so all cards start at a similar width
+     - allow slight shrinking on narrower containers but prevent collapsing
+     - keep a sensible max to avoid overly wide cards on very large screens */
+  flex: 0 1 280px; /* base width ~280px, can shrink if needed */
+  min-width: 240px; /* don't collapse too small */
+  max-width: 320px; /* cap at the previous largest value */
+  /* make cards taller than they are wide */
+  min-height: 400px;
+  /* slightly more transparent so the root background shows through more */
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 28px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(6px);
+  overflow: hidden; /* keep visual cropping for images but don't force layout overflow */
+  display: flex;
+  flex-direction: column;
+}
+
+.product-image {
+  display: none; /* images removed per design */
+}
+
+.product-body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  text-align: center;
+  /* make the body grow to fill the card and distribute its children so
+     the roast divider and footer sit in consistent positions across cards */
+  flex: 1 1 auto;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.product-name {
+  margin: 0;
+  font-size: 2rem; /* doubled size for title */
+  font-weight: 800; /* strongest emphasis for the title */
+  color: #2b2b2b;
+}
+
+.product-desc {
+  margin: 0;
+  font-size: 1.5rem; /* doubled size */
+  color: #444444;
+}
+
+.product-roast {
+  margin: 0;
+  font-size: 1.5rem; /* doubled size */
+  color: #666666;
+  position: relative;
+  /* give a consistent vertical area for the roast + dividers so they
+     appear at the same height in every card */
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 0;
+  width: 100%;
+}
+
+.product-roast::before,
+.product-roast::after {
+  content: "";
+  position: absolute;
+  /* extend the divider to the card edges by offsetting by the .product-body padding (1.25rem) */
+  left: -1.25rem;
+  right: -1.25rem;
+  height: 1px; /* half the previous thickness */
+  /* more opaque white so the divider is more visible but still sits over the translucent card */
+  background: rgba(233, 231, 231, 0.9);
+  /* keep the lines behind the roast text and buttons */
+  z-index: 0;
+}
+
+.product-roast::before {
+  top: 0;
+}
+
+.product-roast::after {
+  bottom: 0;
+}
+
+.product-footer {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  margin: 0; /* positioning handled by product-body's space distribution */
+}
+
+/* product-price removed — price is now inside the button */
+
+.product-button {
+  background: var(--primary-brown);
+  color: #ffffff;
+  border: none;
+  padding: 0.6rem 1rem;
+  min-width: 0; /* allow items to shrink; use padding/font adjustments for spacing */
+  height: 56px;
+  display: inline-flex;
+  gap: 0.8rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px; /* less round */
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(109, 76, 61, 0.18);
+}
+
+.product-button-text {
+  font-size: 1.5rem; /* doubled size for visible price */
+  font-weight: 400;
+}
+
+.product-button-icon {
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* small screens */
+@media (max-width: 640px) {
+  .tienda-hero {
+    height: 220px;
+  }
+  .product-card {
+    min-width: 0;
+    max-width: 100%;
+    min-height: 320px;
+  }
+  .product-roast {
+    min-height: 56px;
+    padding: 0.5rem 0;
+  }
+  .product-button {
+    min-width: 0;
+    max-width: 100%;
+    height: 40px;
+    padding: 0.4rem 0.6rem;
+  }
+  .tienda-products-section {
+    margin-top: 2rem;
+    padding-bottom: 1.25rem;
+  }
+}
+
+/* Improved mobile responsiveness: stack cards, hide arrows, reduce text sizes and spacing */
+@media (max-width: 640px) {
+  /* hide the large decorative arrows to save space on mobile */
+  .tienda-arrow {
+    display: none;
+  }
+
+  /* Stack products vertically and remove horizontal scrolling / overflow */
+  .tienda-products {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    overflow-x: hidden;
+    max-width: 100%;
+    padding: 0.75rem 0.5rem;
+    box-sizing: border-box;
+  }
+
+  /* Make cards take full available width and have comfortable vertical spacing */
+  .product-card {
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: auto;
+    padding: 0;
+    border-radius: 18px;
+  }
+
+  /* On mobile, align text to left for readability and reduce sizes */
+  .product-body {
+    align-items: flex-start;
+    text-align: left;
+    padding: 1rem;
+    gap: 0.35rem;
+  }
+
+  .product-name {
+    font-size: 1.25rem;
+    line-height: 1.1;
+  }
+
+  .product-desc {
+    font-size: 1rem;
+    color: #4a4a4a;
+  }
+
+  .product-roast {
+    font-size: 0.95rem;
+    min-height: 36px;
+    padding: 0.35rem 0;
+  }
+
+  .product-roast::before,
+  .product-roast::after {
+    left: 0; /* keep divider inside the card on mobile */
+    right: 0;
+    height: 1px;
+    background: rgba(220, 220, 220, 0.9);
+  }
+
+  .product-footer {
+    width: 100%;
+    justify-content: flex-end;
+    padding-top: 0.25rem;
+  }
+
+  .product-button {
+    height: 44px;
+    padding: 0.4rem 0.9rem;
+    border-radius: 8px;
+  }
+
+  /* reduce hero text size so it fits nicely on small screens */
+  .tienda-title {
+    font-size: 1.75rem;
+  }
+
+  .tienda-subtitle {
+    font-size: 0.95rem;
+  }
+
+  /* ensure section paddings are compact on mobile */
+  .tienda-products-section {
+    padding: 0 0.75rem 1rem 0.75rem;
+    margin-top: 1rem;
+  }
+}

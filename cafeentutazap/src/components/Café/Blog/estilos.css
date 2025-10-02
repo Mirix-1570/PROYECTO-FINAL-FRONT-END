@@ -1,0 +1,100 @@
+:root {
+  --light-brown: #7b3b24;
+  --cream: #f5efe9;
+}
+
+.blog-section {
+  display: grid;
+  grid-template-columns: 1fr 40%;
+  min-height: 60vh;
+  background: var(--primary-brown);
+  color: var(--cream);
+}
+
+.blog-left {
+  padding: 4vw;
+}
+
+.blog-heading {
+  font-family: "Georgia", serif;
+  font-size: clamp(28px, 4vw, 56px);
+  margin: 0 0 2rem 0;
+  font-weight: 700;
+  display: block;
+  text-align: right; /* alinear ambos textos a la derecha */
+}
+
+.blog-heading .heading-top {
+  display: block;
+  font-size: 0.95em;
+  font-weight: 700;
+  text-align: right;
+}
+
+.blog-heading .heading-bottom {
+  display: block;
+  font-size: 1.05em;
+  font-weight: 900; /* enfatizar la palabra Blog */
+  text-align: right;
+  color: #fff;
+  letter-spacing: 0.6px;
+}
+
+.posts {
+  display: grid;
+  gap: 2rem;
+}
+
+.post-card {
+  padding: 1rem 1.25rem;
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.post-card.left {
+  max-width: 60%;
+  margin-left: 0;
+  margin-right: auto;
+  border-left: 3px solid rgba(255, 255, 255, 0.12);
+}
+
+.post-card.right {
+  max-width: 60%;
+  margin-left: auto;
+  margin-right: 0;
+  border-right: 3px solid rgba(255, 255, 255, 0.12);
+}
+
+.post-title {
+  margin: 0 0 0.25rem 0;
+  font-size: clamp(18px, 2.6vw, 28px);
+  font-weight: 800;
+}
+
+.post-author {
+  margin: 0 0 0.75rem 0;
+  color: rgba(245, 239, 233, 0.85);
+  font-size: 0.95rem;
+}
+
+.post-excerpt {
+  margin: 0 0 0.5rem 0;
+  color: rgba(245, 239, 233, 0.9);
+  line-height: 1.4;
+}
+
+.blog-right {
+  background-image: url("/media/blog.jpeg");
+  background-size: cover;
+  background-position: center;
+}
+
+/* Responsive: apila en pantallas pequeñas */
+@media (max-width: 900px) {
+  .blog-section {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-right {
+    height: 40vh;
+  }
+}

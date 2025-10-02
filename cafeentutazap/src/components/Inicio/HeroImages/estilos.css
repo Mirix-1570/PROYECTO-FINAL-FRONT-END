@@ -1,0 +1,80 @@
+/* HeroImages: two images side-by-side covering most of the viewport */
+.hero-split {
+  display: flex;
+  width: 100%;
+  /* modest reduction compared to full viewport — keeps visual impact */
+  height: calc(85vh - 64px);
+  min-height: 480px;
+}
+
+.hero-side {
+  flex: 1 1 50%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero-left {
+  background-image: url("/media/inicio1.jpeg");
+}
+.hero-right {
+  /* moved the background image out so this side shows a flat color and the image
+     will be displayed above the text in InicioFrase instead */
+  background-image: none;
+  background-color: #552a12;
+}
+
+.hero-right .hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 1rem 1rem; /* restore a bit more breathing room */
+  box-sizing: border-box;
+}
+
+.hero-foreground {
+  /* show the entire image without cropping */
+  display: block;
+  margin-top: 40px;
+  max-width: 900px; /* maintain a visually prominent width */
+  max-height: 460px; /* cap height so it doesn't push the layout */
+  object-fit: contain; /* ensure the full image is visible */
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.32);
+  background-color: transparent;
+}
+
+.hero-caption {
+  margin-top: 1rem;
+  max-width: 460px; /* match updated image width for balance */
+  color: #fff; /* white text on dark background */
+  text-align: center;
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 800px) {
+  .hero-foreground {
+    max-width: 520px;
+    max-height: 34vh;
+    width: auto;
+    height: auto;
+  }
+  .hero-caption {
+    padding: 0 1rem;
+    font-size: 1rem;
+  }
+}
+
+/* small screens: stack vertically */
+@media (max-width: 800px) {
+  .hero-split {
+    flex-direction: column;
+    height: auto;
+  }
+  .hero-side {
+    min-height: 48vh;
+  }
+}

@@ -1,0 +1,92 @@
+.contactme-hero {
+  width: 100%;
+  min-height: 48vh; /* compact but tall enough for the contact card */
+  background-image: url("/media/contactme.jpeg");
+  background-size: cover; /* cover prevents empty gaps */
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* prevent horizontal overflow coming from children */
+  overflow-x: hidden;
+}
+
+.contactme-overlay {
+  width: 100%;
+  padding: 2.25rem 0; /* give vertical breathing room but avoid fixed heights */
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+.contactme-card {
+  background: transparent;
+  padding: 3rem 1.5rem;
+  max-width: 460px;
+  width: calc(100% - 2rem);
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  text-align: left;
+  color: #ffffff;
+  margin-left: 3%;
+  box-sizing: border-box; /* ensure padding is included in width calculations */
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.contactme-card h2 {
+  margin: 0 0 1rem 0;
+  font-size: 2.6rem;
+  color: #ffffff;
+  line-height: 1.05;
+  font-weight: 700;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+  /* allow header to wrap on small screens */
+  white-space: normal;
+}
+
+.contactme-card p {
+  margin: 0.25rem 0;
+  /* slightly larger body text for readability */
+  font-size: 1.15rem;
+  line-height: 1.4;
+}
+
+.contactme-card a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* Separación entre la dirección y las redes sociales dentro de la tarjeta */
+.contactme-social {
+  margin-top: 1.25rem; /* separación clara entre dirección y redes */
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+@media (max-width: 600px) {
+  .contactme-card {
+    position: static;
+    margin: 2rem 1rem 1rem;
+    width: calc(100% - 2rem);
+    text-align: center;
+    color: #ffffff;
+  }
+
+  .contactme-card h2 {
+    /* scaled down on small screens but kept prominent */
+    /* reduced to prevent overflow on narrow viewports */
+    font-size: 2.4rem;
+    color: #ffffff;
+  }
+  .contactme-card p {
+    font-size: 1.05rem;
+  }
+}
